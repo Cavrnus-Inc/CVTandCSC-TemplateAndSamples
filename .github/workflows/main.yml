@@ -63,7 +63,7 @@ jobs:
         run: |
           # Extract tag name for consistency and set archive name.
           TAG=${GITHUB_REF##*/}
-          ARCHIVE_NAME="cavrnus-collab-viewer-${TAG}.zip"
+          ARCHIVE_NAME="CVTandCSC-TemplateAndSamples-${TAG}.zip"
           UPLOAD_URL="${{ steps.create_release.outputs.upload_url }}"
           echo "Uploading asset to: ${UPLOAD_URL}"
           curl --fail -s -X POST \

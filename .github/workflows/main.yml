@@ -65,9 +65,10 @@ jobs:
           TAG=${GITHUB_REF##*/}
           ARCHIVE_NAME="CVTandCSC-TemplateAndSamples-${TAG}.zip"
           UPLOAD_URL="${{ steps.create_release.outputs.upload_url }}"
-          echo "Uploading asset to: ${UPLOAD_URL}"
-          curl --fail -s -X POST \
+          echo "Uploading asset to: ${UPLOAD_URL}?name=${ARCHIVE_NAME}"
+          # Stream the archive to avoid memory issues.
+          cat "${ARCHIVE_NAME}" | curl --fail -s -X POST \
             -H "Authorization: token ${GITHUB_TOKEN}" \
             -H "Content-Type: application/zip" \
-            --data-binary "@${ARCHIVE_NAME}" \
+            --data-binary @- \
             "${UPLOAD_URL}?name=${ARCHIVE_NAME}"

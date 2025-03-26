@@ -41,7 +41,7 @@ jobs:
         run: |
           echo "Creating release for tag ${TAG_NAME}"
           # Use a release name without spaces.
-          RELEASE_NAME="cavrnus-collab-viewer-${TAG_NAME}"
+          RELEASE_NAME="CVTandCSC-TemplateAndSamples-${TAG_NAME}"
           RESPONSE=$(curl --fail -s -X POST \
             -H "Authorization: token ${GITHUB_TOKEN}" \
             -H "Content-Type: application/json" \

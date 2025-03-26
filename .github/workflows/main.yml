@@ -15,7 +15,7 @@ jobs:
 
       - name: Remove Git-related files and folders
         run: |
-          # Remove all .gitignore files
+          # Remove all .gitignore files recursively
           find . -name ".gitignore" -type f -delete
           # Remove the .github folder entirely
           rm -rf .github
@@ -24,10 +24,10 @@ jobs:
 
       - name: Create zip archive with project and tag name
         run: |
-          # Extract tag name from GITHUB_REF (e.g., refs/tags/2025.x.x -> 2025.x.x)
+          # Extract tag name from GITHUB_REF (e.g., refs/tags/1.0.0 -> 1.0.0)
           TAG=${GITHUB_REF##*/}
           echo "Tag is: ${TAG}"
-          # Name the archive with the project name and tag, no spaces.
+          # Name the archive with the project name and tag, with no spaces.
           ARCHIVE_NAME="CVTandCSC-TemplateAndSamples-${TAG}.zip"
           # Create a zip archive of the repository, excluding the archive itself.
           zip -r "${ARCHIVE_NAME}" . -x "${ARCHIVE_NAME}"
@@ -54,7 +54,7 @@ jobs:
           # Extract the upload_url and remove the placeholder part {?name,label}.
           UPLOAD_URL=$(echo "$RESPONSE" | jq -r '.upload_url' | sed 's/{?name,label}//')
           
-          # Write the upload_url to the GitHub output file using the new environment file syntax.
+          # Write the upload_url to the GitHub output file using environment file syntax.
           echo "upload_url=${UPLOAD_URL}" >> $GITHUB_OUTPUT
 
       - name: Upload Release Asset
@@ -66,8 +66,8 @@ jobs:
           ARCHIVE_NAME="CVTandCSC-TemplateAndSamples-${TAG}.zip"
           UPLOAD_URL="${{ steps.create_release.outputs.upload_url }}"
           echo "Uploading asset to: ${UPLOAD_URL}?name=${ARCHIVE_NAME}"
-          # Stream the archive to avoid memory issues.
-          cat "${ARCHIVE_NAME}" | curl --fail -s -X POST \
+          # Stream the archive using dd in 4MB blocks to avoid memory issues.
+          dd if="${ARCHIVE_NAME}" bs=4M | curl --fail -s -X POST \
             -H "Authorization: token ${GITHUB_TOKEN}" \
             -H "Content-Type: application/zip" \
             --data-binary @- \

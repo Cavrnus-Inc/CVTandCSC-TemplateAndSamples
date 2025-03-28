@@ -5,9 +5,12 @@
 	"Description": "",
 	"Modules": [
 		{
-			"Name": "CavrnusCollabViewer",
+			"Name": "CVTCSCTemplates",
 			"Type": "Runtime",
-			"LoadingPhase": "Default"
+			"LoadingPhase": "Default",
+			"SupportedTargetPlatforms": [
+				"Win64"
+			]
 		}
 	],
 	"Plugins": [
@@ -19,32 +22,8 @@
 			]
 		},
 		{
-			"Name": "SunPosition",
-			"Enabled": true
-		},
-		{
-			"Name": "DataPrepEditor",
-			"Enabled": true
-		},
-		{
 			"Name": "DatasmithImporter",
 			"Enabled": true
-		},
-		{
-			"Name": "VariantManager",
-			"Enabled": true
-		},
-		{
-			"Name": "PythonScriptPlugin",
-			"Enabled": true
-		},
-		{
-			"Name": "HDRIBackdrop",
-			"Enabled": true
-		},
-		{
-			"Name": "SequencerScripting",
-			"Enabled": false
 		},
 		{
 			"Name": "DatasmithCADImporter",
@@ -52,22 +31,6 @@
 			"SupportedTargetPlatforms": [
 				"Win64",
 				"Linux"
-			]
-		},
-		{
-			"Name": "InterchangeEditor",
-			"Enabled": true,
-			"SupportedTargetPlatforms": [
-				"Win64",
-				"Linux",
-				"Mac"
-			]
-		},
-		{
-			"Name": "AxFImporter",
-			"Enabled": true,
-			"SupportedTargetPlatforms": [
-				"Win64"
 			]
 		},
 		{

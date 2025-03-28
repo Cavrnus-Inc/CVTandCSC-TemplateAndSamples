@@ -3,9 +3,9 @@
 using System.IO;
 using UnrealBuildTool;
 
-public class CavrnusCollabViewer : ModuleRules
+public class CVTCSCTemplates : ModuleRules
 {
-	public CavrnusCollabViewer(ReadOnlyTargetRules Target) : base(Target)
+	public CVTCSCTemplates(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	

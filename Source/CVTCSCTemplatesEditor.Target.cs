@@ -3,13 +3,12 @@
 using UnrealBuildTool;
 using System.Collections.Generic;
 
-public class CavrnusCollabViewerEditorTarget : TargetRules
+public class CVTCSCTemplatesEditorTarget : TargetRules
 {
-	public CavrnusCollabViewerEditorTarget(TargetInfo Target) : base(Target)
+	public CVTCSCTemplatesEditorTarget(TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Editor;
 		DefaultBuildSettings = BuildSettingsVersion.V4;
-
-		ExtraModuleNames.AddRange( new string[] { "CavrnusCollabViewer" } );
+		ExtraModuleNames.AddRange( new string[] { "CVTCSCTemplates" } );
 	}
 }
